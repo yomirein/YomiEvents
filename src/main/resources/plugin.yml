@@ -1,0 +1,21 @@
+name: MineEvents
+version: '${project.version}'
+main: com.yomirein.mineevents.MineEvents
+api-version: '1.20'
+commands:
+  openserver:
+    description: Opens server
+    usage: /openserver
+    permission: yomievents.open
+  eventsreload:
+    description: Events reload
+    usage: /eventsreload
+    permission: yomievents.reload
+  addtester:
+    description: adds petuh
+    usage: /addtester
+    permission: yomievents.petuh
+  remtester:
+    description: rem petuh
+    usage: /remtester
+    permission: yomievents.petuh
