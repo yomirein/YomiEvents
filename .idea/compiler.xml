@@ -9,5 +9,8 @@
         <module name="MineEvents" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="YomiEvents" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

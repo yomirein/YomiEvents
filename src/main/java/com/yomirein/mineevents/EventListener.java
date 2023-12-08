@@ -1,5 +1,7 @@
 package com.yomirein.mineevents;
 
+import com.yomirein.mineevents.utils.ItemBuilder;
+import com.yomirein.mineevents.utils.Potions;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.yomirein.mineevents.MineEvents.config;
+import static org.bukkit.plugin.java.JavaPlugin.getPlugin;
 
 public class EventListener implements Listener {
 
@@ -29,35 +32,23 @@ public class EventListener implements Listener {
     }
 
     @EventHandler
-    public void GiveArmor(PlayerMoveEvent event) {
+    public void giveArmor(PlayerMoveEvent event) {
         Player player = event.getPlayer();
+        double playerZ = player.getLocation().getZ();
 
-        ItemStack IronSword = new ItemStack(Material.IRON_SWORD);
-        IronSword.addEnchantment(Enchantment.DAMAGE_ALL, 3);
-        IronSword.setDurability((short) 32000);
-
-        ItemStack IronChest = new ItemStack(Material.IRON_CHESTPLATE);
-        IronChest.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-
-        double z = player.getLocation().getZ();
-
-        Boolean reg = player.getActivePotionEffects().contains(PotionEffectType.REGENERATION);
-
-        if (z >= -26.5 && z <= -26.0) {
-            //-26.5 -- -26.0
-
+        if (playerZ >= -26.5 && playerZ <= -26.0) {
+            // [-26.5;-26.0]
 
             player.getInventory().clear();
-            player.getInventory().addItem(IronSword, new ItemStack(Material.BOW));
-            player.getInventory().setChestplate(IronChest);
-            player.addPotionEffect(new PotionEffect (PotionEffectType.REGENERATION, 10000, 2));
+            player.getInventory().addItem(Stuff.EVENT_SWORD, Stuff.EVENT_BOW);
+            player.getInventory().setChestplate(Stuff.EVENT_CHESTPLATE);
+            player.addPotionEffect(Potions.of(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 2));
         }
-        if (z >= -26.0 && z <= -25.5
-            && !reg) {
-
+        if (playerZ >= -26.0 && playerZ <= -25.5
+            && !player.hasPotionEffect(PotionEffectType.REGENERATION)) {
 
             player.getInventory().clear();
-            player.getActivePotionEffects().clear();
+            player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
         }
     }
 }
