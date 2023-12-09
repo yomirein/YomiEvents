@@ -29,6 +29,8 @@ public class EventListener implements Listener {
 
             Bukkit.broadcastMessage("Item giving start");
 
+            player.updateInventory();
+
             player.getInventory().addItem(
                     Stuff.eventSword(), Stuff.eventBow(), Stuff.eventArrow()
             );
