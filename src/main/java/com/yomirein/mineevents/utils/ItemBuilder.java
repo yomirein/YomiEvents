@@ -8,8 +8,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class ItemBuilder {
     ItemStack item;
 
-    public ItemBuilder addEnchantment(Enchantment enchantment, int level) {
-        item.addEnchantment(enchantment, level);
+    public ItemBuilder addUnsafeEnchantment(Enchantment enchantment, int level) {
+        item.addUnsafeEnchantment(enchantment, level);
         return this;
     }
     public ItemBuilder unbreakable(boolean value) {
