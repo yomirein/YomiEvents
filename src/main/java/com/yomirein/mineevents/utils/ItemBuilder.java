@@ -12,6 +12,7 @@ public class ItemBuilder {
             item.addUnsafeEnchantment(enchantment, level);
         return this;
     }
+
     public ItemBuilder unbreakable(boolean value) {
         ItemMeta meta = item.getItemMeta();
         meta.setUnbreakable(value);

@@ -2,11 +2,13 @@ package com.yomirein.mineevents;
 
 import com.yomirein.mineevents.utils.Potions;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -35,12 +37,13 @@ public class EventListener implements Listener {
 
             System.out.println("Item giving finished");
 
+
             player.addPotionEffect(Potions.of(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 2));
             player.addPotionEffect(Potions.of(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 1));
         }
 
         if (playerZ >= -26.0 && playerZ <= -25.5
-            && !player.hasPotionEffect(PotionEffectType.REGENERATION)) {
+            && player.hasPotionEffect(PotionEffectType.REGENERATION)) {
 
             player.getInventory().clear();
             player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
