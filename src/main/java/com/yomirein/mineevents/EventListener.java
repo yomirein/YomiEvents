@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -29,10 +30,10 @@ public class EventListener implements Listener {
 
             Bukkit.broadcastMessage("Item giving start");
 
-            Bukkit.broadcastMessage(player.getInventory().addItem(
-                    Stuff.eventSword(), Stuff.eventBow(), Stuff.eventArrow()
-            ).toString());
-            player.getInventory().setChestplate(Stuff.eventChestplate());
+            player.getInventory().setItem(1,Stuff.eventSword());
+            player.getInventory().setItem(2,Stuff.eventBow());
+            player.getInventory().setItem(3,Stuff.eventArrow());
+            player.getInventory().setItem(EquipmentSlot.CHEST ,Stuff.eventChestplate());
 
             Bukkit.broadcastMessage("Item giving finished");
 
