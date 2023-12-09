@@ -25,7 +25,7 @@ public class EventListener implements Listener {
         if (playerZ >= -26.5 && playerZ <= -26.0) {
             player.getInventory().clear();
 
-            Bukkit.broadcastMessage("Item giving start");
+            System.out.println("Item giving start");
 
             player.getInventory().addItem(Stuff.eventSword());
             player.getInventory().addItem(Stuff.eventBow());
@@ -33,7 +33,7 @@ public class EventListener implements Listener {
 
             player.getInventory().setChestplate(Stuff.eventChestplate());
 
-            Bukkit.broadcastMessage("Item giving finished");
+            System.out.println("Item giving finished");
 
             player.addPotionEffect(Potions.of(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 2));
             player.addPotionEffect(Potions.of(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 1));
