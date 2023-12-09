@@ -25,11 +25,11 @@ public class EventListener implements Listener {
             player.getInventory().clear();
 
 
-            player.getInventory().addItem(Stuff.EVENT_SWORD);
-            player.getInventory().addItem(Stuff.EVENT_BOW);
-            player.getInventory().addItem(Stuff.EVENT_ARROW);
+            player.getInventory().addItem(Stuff.eventSword());
+            player.getInventory().addItem(Stuff.eventBow());
+            player.getInventory().addItem(Stuff.eventArrow());
 
-            player.getInventory().setChestplate(Stuff.EVENT_CHESTPLATE);
+            player.getInventory().setChestplate(Stuff.eventChestplate());
 
 
             player.addPotionEffect(Potions.of(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 2));

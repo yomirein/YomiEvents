@@ -9,7 +9,7 @@ public class ItemBuilder {
     ItemStack item;
 
     public ItemBuilder addUnsafeEnchantment(Enchantment enchantment, int level) {
-        item.addUnsafeEnchantment(enchantment, level);
+            item.addUnsafeEnchantment(enchantment, level);
         return this;
     }
     public ItemBuilder unbreakable(boolean value) {
