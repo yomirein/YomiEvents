@@ -41,11 +41,11 @@ public class EventListener implements Listener {
             player.addPotionEffect(Potions.of(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 1));
         }
 
-        if (playerZ >= -26.0 && playerZ <= -25.5
-            && player.hasPotionEffect(PotionEffectType.REGENERATION)) {
-
-            player.getInventory().clear();
-            player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
-        }
+//        if (playerZ >= -26.0 && playerZ <= -25.5
+//            && player.hasPotionEffect(PotionEffectType.REGENERATION)) {
+//
+//            player.getInventory().clear();
+//            player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
+//        }
     }
 }
