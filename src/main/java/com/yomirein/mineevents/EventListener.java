@@ -29,9 +29,9 @@ public class EventListener implements Listener {
 
             Bukkit.broadcastMessage("Item giving start");
 
-            System.out.println(player.getInventory().addItem(
+            Bukkit.broadcastMessage(player.getInventory().addItem(
                     Stuff.eventSword(), Stuff.eventBow(), Stuff.eventArrow()
-            ));
+            ).toString());
             player.getInventory().setChestplate(Stuff.eventChestplate());
 
             Bukkit.broadcastMessage("Item giving finished");
