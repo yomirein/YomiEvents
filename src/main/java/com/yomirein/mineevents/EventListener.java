@@ -1,6 +1,7 @@
 package com.yomirein.mineevents;
 
 import com.yomirein.mineevents.utils.Potions;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +25,7 @@ public class EventListener implements Listener {
         if (playerZ >= -26.5 && playerZ <= -26.0) {
             player.getInventory().clear();
 
+            Bukkit.broadcastMessage("Item giving start");
 
             player.getInventory().addItem(Stuff.eventSword());
             player.getInventory().addItem(Stuff.eventBow());
@@ -31,6 +33,7 @@ public class EventListener implements Listener {
 
             player.getInventory().setChestplate(Stuff.eventChestplate());
 
+            Bukkit.broadcastMessage("Item giving finished");
 
             player.addPotionEffect(Potions.of(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 2));
             player.addPotionEffect(Potions.of(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 1));
