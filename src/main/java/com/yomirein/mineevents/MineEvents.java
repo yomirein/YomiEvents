@@ -1,7 +1,6 @@
 package com.yomirein.mineevents;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.InvocationTargetException;
@@ -22,14 +21,11 @@ public class MineEvents extends JavaPlugin {
         config = getConfig();
         isOpen = config.getBoolean("isOpen");
 
-        for (Method method : Stuff.class.getMethods()) {
-            try {
-                ItemStack stack = (ItemStack) method.invoke(null);
-                System.out.println(stack.getType() +" "+ stack.getItemMeta());
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        System.out.println(Stuff.eventChestplate());
+        System.out.println(Stuff.eventBow());
+        System.out.println(Stuff.eventSword());
+        System.out.println(Stuff.eventArrow());
+
 
         instance = this;
 
