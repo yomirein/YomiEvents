@@ -34,14 +34,14 @@ public class ItemBuilder {
         return new ItemBuilder(material, amount, (short) 0);
     }
     public static ItemBuilder of(Material material) {
-        return new ItemBuilder(material, 0);
+        return new ItemBuilder(material, 1);
     }
 
     private ItemBuilder(Material material) {
         this(material, 1);
     }
     private ItemBuilder(Material material, int amount) {
-        this(material, amount, (short) 0);
+        this(material, amount, (short) 1);
     }
     private ItemBuilder(Material material, int amount, short damage) {
         this(material, amount, damage, null);

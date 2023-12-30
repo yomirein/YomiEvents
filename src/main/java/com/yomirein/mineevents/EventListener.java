@@ -2,12 +2,15 @@ package com.yomirein.mineevents;
 
 import com.yomirein.mineevents.utils.Potions;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -22,33 +25,47 @@ public class EventListener implements Listener {
     @EventHandler
     public void giveArmor(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        double playerZ = player.getLocation().getZ();
 
-        if (playerZ >= -26.5 && playerZ <= -26.0) {
-            player.getInventory().clear();
+        Location portal = new Location(player.getWorld(), 0, -39, 10);
+        Location pvpzone = new Location(player.getWorld(), 0, -35, 37);
 
-            Bukkit.broadcastMessage("Item giving start");
 
-            player.updateInventory();
+
+        if (portal.getNearbyPlayers(4, 1, 4).contains(player)) {
+            player.setHealth(20);
+            player.setFoodLevel(20);
 
             player.getInventory().addItem(
                     Stuff.eventSword(), Stuff.eventBow(), Stuff.eventArrow()
             );
             player.getInventory().setChestplate(Stuff.eventChestplate());
-            player.updateInventory();
-
-            Bukkit.broadcastMessage("Item giving finished");
 
 
             player.addPotionEffect(Potions.of(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 2));
             player.addPotionEffect(Potions.of(PotionEffectType.SATURATION, PotionEffect.INFINITE_DURATION, 1));
+
+            player.teleport(pvpzone);
+        }
+    }
+    @EventHandler
+    public void resetItems(PlayerDeathEvent event) {
+        Player player = event.getPlayer();
+        player.getInventory().clear();
+    }
+
+    @EventHandler
+    public void IfExit(PlayerQuitEvent event){
+        Player player = event.getPlayer();
+        Location pvpzone2 = new Location(player.getWorld(), 0, -35, 44);
+        Location spawn = new Location(player.getWorld(), 0, -38, 0);
+
+        if(pvpzone2.getNearbyPlayers(34, 15, 12).contains(player)){
+            player.getInventory().clear();
+            player.getActivePotionEffects().clear();
+            player.teleport(spawn);
+            player.setHealth(20);
+            player.setFoodLevel(20);
         }
 
-//        if (playerZ >= -26.0 && playerZ <= -25.5
-//            && player.hasPotionEffect(PotionEffectType.REGENERATION)) {
-//
-//            player.getInventory().clear();
-//            player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
-//        }
     }
 }
